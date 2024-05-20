@@ -53,3 +53,80 @@ int main() {
     return 0;
 }
 ```
+
+## 2. Classes and Objects
+
+A class is a blueprint for creating objects. It defines the properties and behaviors that the objects created from the class will have. An object is an instance of a class.
+
+**Example**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+public:
+    string name;
+    int age;
+
+    void introduce() {
+        cout << "Hi, my name is " << name << " and I am " << age << " years old." << endl;
+    }
+};
+
+int main() {
+    Person person1;
+    person1.name = "Alice";
+    person1.age = 30;
+    
+    person1.introduce();
+
+    return 0;
+}
+```
+
+## 3. Encapsulation
+
+Encapsulation is the concept of bundling data and methods that operate on that data within a single unit, typically a class. It restricts direct access to some of the object's components, which is a means of preventing accidental interference and misuse of the methods and data.
+
+**Example**
+
+```cpp
+#include <iostream>
+#include <string>
+
+class BankAccount {
+private:
+    std::string owner;
+    double balance;
+
+public:
+    BankAccount(std::string owner, double balance) : owner(owner), balance(balance) {}
+
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+        }
+    }
+
+    void displayBalance() {
+        std::cout << "Owner: " << owner << ", Balance: $" << balance << std::endl;
+    }
+};
+
+int main() {
+    BankAccount account("John Doe", 1000.0);
+    account.deposit(500.0);
+    account.withdraw(200.0);
+    account.displayBalance();
+
+    return 0;
+}
+```
