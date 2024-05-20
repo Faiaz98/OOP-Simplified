@@ -1,4 +1,4 @@
-# OOP-Simplified
+ # OOP-Simplified
 
 Object-Oriented Programming (OOP) is a programming paradigm that uses "objects" to design software.
 
@@ -14,3 +14,41 @@ Object-Oriented Programming (OOP) is a programming paradigm that uses "objects" 
 - Operator Overloading
 - Templates and Generic Programming
 - Exception Handling
+
+## 1. Introduction to OOP
+
+Object-Oriented Programming (OOP) is a programming paradigm that uses "objects" to design software. Objects represent real-world entities with attributes (data) and behaviors (methods/functions). OOP helps in organizing code, making it more modular, reusable, and easier to understand.
+
+**Example**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Car {
+public:
+  //Attributes
+  string brand;
+  string model;
+  int year;
+
+  // Method
+  void displayInfo() {
+    cout<< "Brand: " << brand << ", Model: " << model << ", Year: "" << year << endl;
+  }
+};
+
+int main() {
+  //creating an object of Car
+  car car1;
+  car1.brand = "Toyota";
+  car1.model = "Corolla";
+  car1.year = 2020;
+
+  // Calling the method
+  car1.displayInfo();
+
+  return 0;
+}
+```
