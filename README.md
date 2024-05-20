@@ -130,3 +130,41 @@ int main() {
     return 0;
 }
 ```
+
+## 4. Inheritance
+
+Inheritance allows a class to inherit properties and behaviors from another class. The class that inherits is called the derived class (or child class), and the class being inherited from is the base class (or parent class). This promotes class reusability.
+
+**Example**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class
+class Animal {
+public:
+    std::string name;
+    void eat() {
+        cout << name << " is eating." << endl;
+    }
+};
+
+// Derived class
+class Dog : public Animal {
+public:
+    void bark() {
+        cout << name << " is barking." << endl;
+    }
+};
+
+int main() {
+    Dog dog1;
+    dog1.name = "Buddy";
+    dog1.eat();    // Inherited method
+    dog1.bark();   // Dog's own method
+
+    return 0;
+}
+```
