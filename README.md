@@ -168,3 +168,49 @@ int main() {
     return 0;
 }
 ```
+
+## 5. Polymorphism
+
+Polymorphism means "many forms". In OOP, it allows methods to do different things based on the object is acting upon, even if the method calls are the same. This can be achieved through method overriding and method overloading.
+
+**Example(Method Overriding)**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Animal {
+public:
+    virtual void makeSound() {
+        cout << "Some generic animal sound" << endl;
+    }
+};
+
+class Dog : public Animal {
+public:
+    void makeSound() override {
+        cout << "Bark" << endl;
+    }
+};
+
+class Cat : public Animal {
+public:
+    void makeSound() override {
+        cout << "Meow" << endl;
+    }
+};
+
+int main() {
+    Animal* animal1 = new Dog();
+    Animal* animal2 = new Cat();
+
+    animal1->makeSound();  // Outputs: Bark
+    animal2->makeSound();  // Outputs: Meow
+
+    delete animal1;
+    delete animal2;
+
+    return 0;
+}
+```
