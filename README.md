@@ -214,3 +214,77 @@ int main() {
     return 0;
 }
 ```
+
+## 6. Abstraction
+
+Abstraction is the concept of hiding the complex implementation details and showing only the necessary features of an object. This can be achieved using abstract classes and interfaces.
+
+**Example**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class AbstractDevice {
+public:
+    virtual void turnOn() = 0;  // Pure virtual function
+    virtual void turnOff() = 0; // Pure virtual function
+};
+
+class Fan : public AbstractDevice {
+public:
+    void turnOn() override {
+        cout << "Fan is turned on" << endl;
+    }
+
+    void turnOff() override {
+        cout << "Fan is turned off" << endl;
+    }
+};
+
+int main() {
+    Fan myFan;
+    myFan.turnOn();
+    myFan.turnOff();
+
+    return 0;
+};
+```
+
+## 7. Constructors and Destructors
+
+Constructors are special methods that are called when an object is instantiated. They are used to initialize objects. Destructors are called when an object is destroyed and are used to release resources.\
+
+**Example**
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Book {
+public:
+    std::string title;
+
+    // Constructor
+    Book(std::string t) : title(t) {
+        cout << "Book \"" << title << "\" created." << endl;
+    }
+
+    // Destructor
+    ~Book() {
+        cout << "Book \"" << title << "\" destroyed." << endl;
+    }
+};
+
+int main() {
+    Book myBook("The Great Gatsby");
+
+    return 0;
+}
+```
+
+## 8. Operation Overloading
+
+Operator overloading allows you to define custom behaviors for operators when they are used with user-defined types(classes). This makes the code more intuitive and easier to read.
