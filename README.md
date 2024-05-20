@@ -288,3 +288,97 @@ int main() {
 ## 8. Operation Overloading
 
 Operator overloading allows you to define custom behaviors for operators when they are used with user-defined types(classes). This makes the code more intuitive and easier to read.
+
+```cpp
+#include <iostream>
+using namespace std;
+
+class Complex {
+public:
+    int real, imag;
+
+    Complex(int r = 0, int i = 0) : real(r), imag(i) {}
+
+    // Overload + operator
+    Complex operator + (const Complex& obj) {
+        return Complex(real + obj.real, imag + obj.imag);
+    }
+
+    void display() {
+        cout << real << " + " << imag << "i" << endl;
+    }
+};
+
+int main() {
+    Complex c1(3, 4), c2(1, 2);
+    Complex c3 = c1 + c2;
+    c3.display(); // Outputs: 4 + 6i
+
+    return 0;
+}
+```
+
+
+## 9. Templates and Generic Programming
+
+Templates allow you to write generic and reusable code. You can create a single function or class to work with different data types.
+
+**Example**
+
+```cpp
+#include <iostream>
+
+template <typename T>
+class Calculator {
+public:
+    T add(T a, T b) {
+        return a + b;
+    }
+
+    T subtract(T a, T b) {
+        return a - b;
+    }
+};
+
+int main() {
+    Calculator<int> intCalc;
+    cout << "10 + 5 = " << intCalc.add(10, 5) << endl;
+    cout << "10 - 5 = " << intCalc.subtract(10, 5) << endl;
+
+    Calculator<double> doubleCalc;
+    cout << "10.5 + 5.5 = " << doubleCalc.add(10.5, 5.5) << endl;
+    cout << "10.5 - 5.5 = " << doubleCalc.subtract(10.5, 5.5) << endl;
+
+    return 0;
+}
+```
+
+
+## 10. Exception Handling
+
+Exception handling is a way to manage error or exceptional situations in your program. It helps in maintaining the normal flow of the program even when errors occur.
+
+
+```cpp
+#include <iostream>
+#include <exception>
+
+int main() {
+    try {
+        int num1 = 10;
+        int num2 = 0;
+
+        if (num2 == 0) {
+            throw runtime_error("Division by zero error");
+        }
+
+        int result = num1 / num2;
+        cout << "Result: " << result << endl;
+    } catch (const std::runtime_error& e) {
+        cerr << "Runtime error: " << e.what() << endl;
+    }
+
+    return 0;
+}
+
+```
