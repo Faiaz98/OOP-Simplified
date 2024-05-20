@@ -26,29 +26,23 @@ Object-Oriented Programming (OOP) is a programming paradigm that uses "objects" 
 #include <string>
 using namespace std;
 
-class Car {
+class Person {
 public:
-  //Attributes
-  string brand;
-  string model;
-  int year;
+    std::string name;
+    int age;
 
-  // Method
-  void displayInfo() {
-    cout<< "Brand: " << brand << ", Model: " << model << ", Year: "" << year << endl;
-  }
+    void introduce() {
+        cout << "Hi, my name is " << name << " and I am " << age << " years old." << endl;
+    }
 };
 
 int main() {
-  //creating an object of Car
-  car car1;
-  car1.brand = "Toyota";
-  car1.model = "Corolla";
-  car1.year = 2020;
+    Person person1;
+    person1.name = "Alice";
+    person1.age = 30;
+    
+    person1.introduce();
 
-  // Calling the method
-  car1.displayInfo();
-
-  return 0;
+    return 0;
 }
 ```
