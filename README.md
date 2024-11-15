@@ -382,3 +382,88 @@ int main() {
 }
 
 ```
+
+# SOLID Principles
+
+The SOLID princes are five guidelines that help make your code more maintainable, reusable, and scalable.
+
+## 1. Single Responsible Principle (SRP)
+### A class should only have one reason to change.
+
+- Real-life Analogy: Think of a chef in a restaurant. The chef only cooks food and doesn't handle billing or customer seating. Similarly, a class should focus on one task.
+- Code Example:
+
+```cpp
+class Order{
+public:
+   void addItem(const string& item) {
+       items.push_back(item); 
+   }
+private:
+   vector<string> items;
+};
+
+class InvoiceGenerator{
+public:
+    void generateInvoice(const Order& order) {
+        //logic for generating invoice
+     }
+};
+```
+
+Here, ```Order``` handles only order-related tasks, and ```InvoiceGenerator```handles billing.
+
+
+## 2. Open/Closed Principle (OCP)
+### A class should be open for extension but closed for modification.
+
+- Real-life Analogy: Imagine a gaming console where you can add new games (extensions) without redesigning the console.
+- Code Example:
+
+```cpp
+class Discount{
+public:
+    virtual double calculate(double amount) = 0;
+};
+
+class SeasonalDiscount : public Discount {
+public:
+  double calculate(double amount) override {
+    return amount * 0.9; //10% discount
+  }
+};
+
+class FestivalDiscount : public Discount {
+public:
+    double calculate(double amount) override {
+        return amount * 0.8; // 20% discount
+    }
+};
+```
+
+You can add new discounts without modifying the original ```Discount``` class.
+
+## 3. Liskov Substitution Principle (LSP)
+### Objects of a superclass should be replaceable with objects of a subclass without affecting the program.
+
+- Real-life Analogy: If you replace a wired mouse with a wireless one, your computer should work the same way.
+- Code Example:
+
+```cpp
+class Bird {
+public:
+    virtual void fly() {
+        std::cout << "Flying high!" << std::endl;
+    }
+};
+
+class Sparrow : public Bird {};
+class Penguin : public Bird {
+    void fly() override {
+        throw std::runtime_error("Penguins can't fly!");
+    }
+};
+```
+
+Here ```Penguin``` violates LSP because it doesn't behave like a ```Bird```. To fix this, create a better hierarchy like FlyingBird and NonFlyingBird.
+
