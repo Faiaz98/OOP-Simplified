@@ -467,3 +467,81 @@ class Penguin : public Bird {
 
 Here ```Penguin``` violates LSP because it doesn't behave like a ```Bird```. To fix this, create a better hierarchy like FlyingBird and NonFlyingBird.
 
+## 4. Interface Segregation Principle (ISP)
+### A class should not be forced to implement methods it doesn't use.
+
+- Real-life Analogy: A food delivery app shouldn't force restaurants to implement a feature for bike delivery if they only do takeout.
+- Code Example:
+
+```cpp
+class PaymentMethod {
+public:
+    virtual void payOnline() = 0;
+    virtual void payCash() = 0;
+};
+
+class OnlinePayment : public PaymentMethod {
+public:
+    void payOnline() override {
+        // Online payment logic
+    }
+    void payCash() override {
+        throw std::runtime_error("Cash not supported");
+    }
+};
+
+```
+
+### Instead, split interfaces:
+
+```cpp
+class OnlinePayment {
+public:
+    virtual void payOnline() = 0;
+};
+
+class CashPayment {
+public:
+    virtual void payCash() = 0;
+};
+```
+
+## 5. Dependency Inversion Principle (DIP)
+### High-level modules should not depend on low-level modules. Both should depend on abstractions.
+
+- Real-life Analogy: A remote control (high-level) works with different devices like TVs or AC (low-level) using universal signals (abstraction).
+- Code Example:
+
+
+```cpp
+class NotificationService {
+public:
+    virtual void sendNotification(const std::string& message) = 0;
+};
+
+class EmailService : public NotificationService {
+public:
+    void sendNotification(const std::string& message) override {
+        std::cout << "Email: " << message << std::endl;
+    }
+};
+
+class SMSService : public NotificationService {
+public:
+    void sendNotification(const std::string& message) override {
+        std::cout << "SMS: " << message << std::endl;
+    }
+};
+
+class Alert {
+    NotificationService& notifier;
+public:
+    Alert(NotificationService& service) : notifier(service) {}
+    void triggerAlert() {
+        notifier.sendNotification("ALERT! Check immediately.");
+    }
+};
+
+```
+
+The ```Alert``` class depends on an abstraction (```NotificationService```), making it flexible to work with both ```EmailService``` and ```SMSService```.
